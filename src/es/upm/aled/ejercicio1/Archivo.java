@@ -8,8 +8,12 @@ public class Archivo {
 		 
 		 public Archivo(String nombre, double peso) { 
 			 this.nombre = nombre;
+			 this.pesoMB = peso;
 		 }
 		 
+		 public String getNombre() {
+			 return nombre;
+		 }
 		 
 		 public double getPesoMB() { 
 			 return this.pesoMB; 

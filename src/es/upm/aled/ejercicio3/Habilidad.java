@@ -14,6 +14,10 @@ public class Habilidad {
 	 public List<Habilidad> getDesbloqueables() { 
 		 return this.desbloqueables; 
 	 }
+	 
+	 public void addDesbloqueables(Habilidad raiz) {
+		this.desbloqueables.add(raiz);
+	 }
 	
 
 	 /*Implemente el método recursivo costeRamaCompleta, que calcula cuántos puntos totales
@@ -22,15 +26,21 @@ public class Habilidad {
 	 */
 
 	 public static int costeRamaCompleta(Habilidad raiz) {
-		 // Inicialización:
-		 int costeTotal = raiz.getCoste();
-		 // Paso recursivo
-		 for (Habilidad habilidades : raiz.getDesbloqueables()) {
-		costeTotal += costeRamaCompleta(habilidades);
+		 // Caso base: Si no hay habilidades que queden por desbloquear en la raíz, devolverá 0
+		 if (raiz == null) {
+			 return 0;
 		 }
-		 // Caso base:
-		 return costeTotal;
 		 
+		 // Nos calculamos el costeTotal de la rama:
+		 int costeTotal = raiz.getCoste();
+		 
+		 // Paso recursivo: Ahora, si en una raíz podemos desbloquear habilidades, entonces tenemos que:
+		 if(raiz.getDesbloqueables() != null) {
+			 for(Habilidad habilidad : raiz.getDesbloqueables()) {
+				 costeTotal += costeRamaCompleta(habilidad);
+			 }
+		 }
+		 return costeTotal;
 		 
 	 }
 }

@@ -25,20 +25,24 @@ public class ElementoHTML {
 	 elemento. */
 	 
 	 public static int contarEtiquetas(ElementoHTML elemento, String tagBuscado) {
-		 // Caso base:
-		 if (elemento == null) {
-			 return 0; 
+		// Caso base: si no hay elemento o el tagBuscado no existe, devolveremos 0:
+		 if(elemento == null || tagBuscado == null) {
+			 return 0;
 		 }
-		 // Inicialización:
+		 
+		 // Ponemos un contador a 0:
 		 int contador = 0;
 		 
-		 if (elemento.getTag().equals(tagBuscado) ) {
-			 contador = 1; // Tag actual es el que buscamos
+		 // Comprobamos primero si el elemento coincide:
+		 if (elemento.getTag().equals(tagBuscado)) {
+			 contador = 1;
 		 }
-		 // Paso recursivo: Recorrer todos los hijos del elemento actual.
-	      // Sumamos el resultado de las llamadas recursivas al contador.
-		 for (ElementoHTML hijo : elemento.getHijos()) {
-			 contador += contarEtiquetas(hijo, tagBuscado);
+		 
+		 // Paso recursivo: si coincide, buscamos ahora en los hijos:
+		 if(elemento.getHijos() != null) {
+			 for(ElementoHTML hijo : elemento.getHijos()) {
+				 contador += contarEtiquetas(hijo,tagBuscado);
+			 }
 		 }
 		 return contador;
 	 }

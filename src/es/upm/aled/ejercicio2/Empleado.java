@@ -29,14 +29,21 @@ public class Empleado {
  de todos sus subordinados (directos e indirectos)
 	  */
 	 public static double presupuestoEquipo(Empleado jefe) {
-		 // Obtenemos el salario del jefe:
-		 double costeTotal = jefe.getSalario();
-		 
-		 // A partir de este salario lo repartimos a todos los subordinados restantes (paso recursivo)
-		 for (Empleado subordinado : jefe.getSubordinados()) {
-			 costeTotal += presupuestoEquipo(subordinado);
+		 // Caso base: no hay jefe al que pagar
+		 if(jefe == null) {
+			 return 0;
 		 }
-		 // Caso base: Se retorna la suma del salario del jefe más los salarios de todos sus equipos.
-		 return costeTotal;
+		 
+		 double salarioTotal = jefe.getSalario();
+		 // Si el jefe tiene subordinados:
+		 if(jefe.getSubordinados() != null) {
+			 for(Empleado empleado : jefe.getSubordinados()) {
+				 // Repartimos el presupuesto a todos los empleados:
+				 salarioTotal += presupuestoEquipo(empleado);
+		 }
+		
+			 
+		 }
+		 return salarioTotal;
 	 }
-}
+	 }

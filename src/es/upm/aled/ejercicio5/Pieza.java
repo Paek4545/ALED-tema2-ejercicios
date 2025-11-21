@@ -28,19 +28,25 @@ public class Pieza {
  Si todas las piezas están bien, devuelve false.
 	  */
 	 public static boolean contieneDefectos(Pieza piezaPrincipal) {
-		// Caso base:
+		// Si no hay pieza, no puede estar defectuosa
 		 if(piezaPrincipal == null) {
+			 return false;
+		 }
+		// Caso base: la pieza principal es defectuosa:
+		 if(piezaPrincipal.isDefectuosa()) {
 			 return true;
 		 }
-		 if (piezaPrincipal.isDefectuosa()) {
-			 return true;
+		 // Por otro lado, las componentes existen, tenemos que hacer el paso recursivo, donde si encontramos alguno defectuoso
+		 // Habrá que devolver un true:
+		 if(piezaPrincipal.getComponentes()!= null) {
+			 for(Pieza componentes : piezaPrincipal.getComponentes()) {
+				 if(contieneDefectos(componentes)) {
+					 return true;
+			 }	 
+			 }
+			 
 		 }
-		 // Paso recursivo
-		 for (Pieza pieza : piezaPrincipal.getComponentes()) {
-			if(contieneDefectos(pieza)) {
-				return true;
-			}
-		 }
+		// Si no se cumplen las condiciones de defecto, devolveremos false:
 		 return false;
 	 }
 
