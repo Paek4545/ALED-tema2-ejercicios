@@ -55,19 +55,19 @@ public class CambioMonedas {
         // Monedas disponibles: ilimitadas (ponemos un número grande)
         int[] limites = {10, 10, 10}; 
         int resultado = contarFormasCambio(3, limites); 
-        System.out.println("Formas de sumar 3 (1+1+1, 1+2): " + resultado); // Debería dar 2
+        System.out.println("Formas de sumar 3 (1+1+1, 1+2): " + resultado);
         
         // Para un objetivo de 3:
         // Límites: una de 1, una de 2, una de 5.
         // Formas: (5)
         int[] limites2 = {1, 1, 1}; 
         resultado = contarFormasCambio(5, limites2); 
-        System.out.println("Formas de sumar 5 (con límites 1,1,1): " + resultado); // Debería dar 1 (solo 5)
+        System.out.println("Formas de sumar 5 (con límites 1,1,1): " + resultado);
 
         // Ejemplo: objetivo = 3, con límite de una moneda de 2
         // Formas: (1+1+1)
         int[] limites3 = {3, 0, 1}; 
         resultado = contarFormasCambio(3, limites3); 
-        System.out.println("Formas de sumar 3 (con límite 1 de 2): " + resultado); // Debería dar 1
+        System.out.println("Formas de sumar 3 (con límite 1 de 2): " + resultado); 
     }
 }
